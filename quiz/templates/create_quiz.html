@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Create Quiz</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ quiz_form.as_p }}
+    <button type="submit">Save and Add Questions</button>
+</form>
+{% endblock %}

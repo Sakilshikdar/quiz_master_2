@@ -1,0 +1,25 @@
+<!-- rate_quiz.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+
+    <h2>Rating the {{ quiz.title }} Quiz</h2>
+    <form method="post" action="{% url 'rate_quiz' quiz.id %}">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="{{ form.rating.id_for_label }}" class="form-label">Select Rating:</label>
+            {{ form.rating }}
+            {% for error in form.rating.errors %}
+            <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+        <button type="submit" class="btn btn-primary">Submit Rating</button>
+    </form>
+    </br>
+    <p><a class="text-decoration-none text-info" href="{% url 'quiz_list'  %}">Back to quiz list</a></p>
+
+    <h4>Quiz Ratings</h4>
+    <p class="text-warning">Average Rating: {{ quiz.average_rating }} ({{ quiz.total_ratings }} ratings)
+</div>
+{% endblock %}

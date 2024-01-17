@@ -1,0 +1,11 @@
+{% extends 'base.html' %} {% load crispy_forms_tags%} {% block content %}
+
+
+<form class="w-50 m-auto" method="post">
+    <h1>{{type}} page</h1>
+    <a class="btn btn-warning btn-sm" href="{% url 'change_pass' %}">Change your password</a>
+    {% csrf_token %} {{data | crispy}}
+    <button class="btn mb-3 btn-primary">submit</button>
+</form>
+
+{% endblock%}

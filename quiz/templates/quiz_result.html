@@ -1,0 +1,12 @@
+{% extends 'base.html' %} {% block content %}
+
+<h1 class="mt-5 d-flex align-items-center justify-content-center shadow-sm">Your score: {{ score }} out of {{ length}}
+</h1>
+<div class="d-flex align-items-center justify-content-center mt-5 gap-5">
+    <a href="{% url 'user_dashboard' %}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">
+        Dashboard</a>
+    <a href="{% url 'quiz_list' %}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Back to
+        Quiz list</a>
+</div>
+
+{% endblock %}

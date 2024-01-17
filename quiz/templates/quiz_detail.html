@@ -1,0 +1,15 @@
+{% extends 'base.html' %} {% block content %}
+<!-- quiz_detail.html -->
+
+<form method="post" action="">
+    {% csrf_token %}
+    <div class="p-5 ">
+
+        {{ form.as_p }}
+        <input class="btn btn-warning btn-lg active" type="submit" value="Submit">
+    </div>
+</form>
+
+
+
+{% endblock %}

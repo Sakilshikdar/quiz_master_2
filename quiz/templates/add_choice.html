@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Add Choices to Question</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ choice_form.as_p }}
+    <button type="submit">Save and Add More Choices</button>
+</form>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+    <div class="mb-3">
+        <label for="categoryFilter" class="form-label">Filter by Category:</label>
+        <input type="text" id="categoryFilter" class="form-control" placeholder="Enter category title">
+        <button onclick="searchCategory()" class="btn btn-primary mt-2">Search</button>
+    </div>
+    <div class="d-flex flex-wrap align-items-lg-center justify-content-center gap-5">
+        {% for quiz in quizzes %}
+        <div>
+            <h4>
+                <a class="text-decoration-none" href="{% url 'quiz_detail' quiz.id %}">{{ quiz.title }}</a>
+                <small> ({{ quiz.average_rating }}<small class="text-">⭐</small>) {{ quiz.total_ratings }}</small>
+            </h4>
+            <a class="text-decoration-none text-danger" href="{% url 'rate_quiz' quiz.id %}">Ratting Quiz</a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<script>
+    function searchCategory() {
+        var input = document.getElementById('categoryFilter').value.toLowerCase();
+        var quizzes = document.querySelectorAll('.d-flex h3');
+
+        quizzes.forEach(function (quiz) {
+            var title = quiz.textContent.toLowerCase();
+            if (title.includes(input)) {
+                quiz.style.display = 'block';
+            } else {
+                quiz.style.display = 'none';
+            }
+        });
+    }
+</script>
+
+{% endblock %}
