@@ -6,6 +6,8 @@ class Quiz(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField()
     category = models.CharField(max_length=255)
+    image = models.ImageField(
+        upload_to='uploads/', blank=True, null=True)
     has_time_limit = models.BooleanField(default=False)
     time_limit_minutes = models.IntegerField(default=0)
     average_rating = models.FloatField(default=0.0, blank=True, null=True)

@@ -10,6 +10,7 @@ from django.contrib.auth.views import LoginView
 from django.urls import reverse_lazy
 # from car.models import Post
 from django.contrib.auth.models import User
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 from django.core.mail import EmailMultiAlternatives
@@ -53,7 +54,7 @@ class LoginView(LoginView):
 
     def form_invalid(self, form):
         messages.success(self.request, 'Logged information is incorrect')
-        return super().form_valid(form)
+        return redirect('user_login')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -80,7 +81,7 @@ def edit_profile(request):
             # data = Post.objects.filter(author=request.user)
             profile_form.save()
             messages.success(request, 'profile update successfully')
-            return redirect('profile')
+            return redirect('edit_profile')
     else:
         profile_form = forms.changeUserForm(instance=request.user)
     return render(request, 'update_profile.html', {'data': profile_form, })
@@ -91,7 +92,6 @@ def change_pass(request):
         form = PasswordChangeForm(request.user, data=request.POST)
         if form.is_valid():
             form.save()
-
             messages.success(request, 'Password changed successfully')
             update_session_auth_hash(request, form.user)
             return redirect('profile')
