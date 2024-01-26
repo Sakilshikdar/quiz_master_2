@@ -13,6 +13,7 @@ django-js-asset
 djangorestframework
 EasyProcess
 entrypoint2
+et-xmlfile
 filelock
 iniconfig
 Markdown
@@ -20,6 +21,7 @@ MouseInfo
 mss
 numpy
 opencv-contrib-python
+openpyxl
 packaging
 pandas
 Pillow
