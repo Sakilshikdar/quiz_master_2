@@ -8,6 +8,8 @@ Create Quiz:
 1. Go the http://127.0.0.1:8000/admin/
 2. Create a Categories
 3. create the quizes with the title, Description, select caterory, Qize Excel file, and image
+4. update quizess and update user profile
+5. Admin can make anyone as a admin
 
 
 ### All user:
