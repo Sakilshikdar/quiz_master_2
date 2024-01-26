@@ -25,7 +25,16 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='homepage'),
     path('author/', include('author.urls')),
-    path('quiz/', include('quiz.urls')),
+    # path('quiz/', include('quiz.urls')),
+    path('quim/', include('quizm.urls')),
+
+    path('leaderboard/', views.leaderboard_view, name='leaderboard'),
+    path('about/', views.about, name='about'),
+    path('contact/', views.contact, name='contact')
+
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL,
+                          document_root=settings.STATIC_ROOT)

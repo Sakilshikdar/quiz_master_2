@@ -1,0 +1,236 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+    .mashead {
+        height: 100vh;
+        background-size: cover;
+        position: relative;
+        color: white;
+        text-shadow: 2px 2px 2px rgba(0, 0, 0, .2);
+        font-family: "Open Sans", sans-serif;
+        overflow: hidden;
+    }
+
+    .color-overlay {
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.7);
+        height: 100%;
+        width: 100%;
+
+    }
+
+
+    .container {
+        max-width: 1080px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 20px;
+        padding-right: 20px;
+        max-height: 100vh;
+    }
+
+    .row {
+        max-height: 100vh;
+    }
+
+    .contact-info {
+        width: 50%;
+    }
+
+    .contact-info-item {
+        display: flex;
+        margin-bottom: 30px;
+    }
+
+    .contact-info-icon {
+        height: 70px;
+        width: 70px;
+        background-color: #fff;
+        text-align: center;
+        border-radius: 50%;
+    }
+
+    .contact-info-icon i {
+        font-size: 30px;
+        line-height: 70px;
+    }
+
+    .contact-info-content {
+        margin-left: 20px;
+    }
+
+    .contact-info-content h4 {
+        color: #1da9c0;
+        font-size: 1.4em;
+        margin-bottom: 5px;
+    }
+
+    .contact-info-content p {
+        color: #FFF;
+        font-size: 1em;
+    }
+</style>
+
+
+
+
+
+
+<div class="mashead mx-3"
+    style="background-image: url(https://images.pexels.com/photos/325185/pexels-photo-325185.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940)">
+    <div class="color-overlay d-flex justify-content-center align-items-center">
+        <div class="container ">
+            <div class="row justify-content-center">
+                <div class="col-lg-4 col-md-6 mt-lg-5">
+
+
+
+                    <div class="contact-info-item">
+                        <div class="contact-info-icon bg-black">
+                            <i class="fas fa-home"></i>
+                            <img src="https://www.cleanpng.com/png-email-png-61919/" alt="">
+                        </div>
+
+                        <div class="contact-info-content">
+                            <h4>Address</h4>
+                            <p>4671 Sugar Camp Road,<br /> Owatonna, Minnesota, <br />55060</p>
+                        </div>
+                    </div>
+
+
+                    <div class="contact-info-item">
+                        <div class="contact-info-icon bg-black">
+                            <i class="fas fa-phone "></i>
+                        </div>
+
+                        <div class="contact-info-content">
+                            <h4>Phone</h4>
+                            <p>571-457-2321</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-info-item">
+                        <div class="contact-info-icon bg-black">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+
+                        <div class="contact-info-content">
+                            <h4>Email</h4>
+                            <p>ntamerrwael@mfano.ga</p>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="col-lg-8 col-md-6 cf">
+                    <!-- Contact Form Section -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Contact Us</h4>
+                        </div>
+                        <div class="card-body">
+                            <form>
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Name</label>
+                                    <input type="text" class="form-control" id="name" name="name" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="email" name="email" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="message" class="form-label">Message</label>
+                                    <textarea class="form-control" id="message" name="message" rows="5"
+                                        required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://kit.fontawesome.com/a9e4777cad.js" crossorigin="anonymous"></script>
+{% endblock %}
+
+
+
+
+<!---->
+<!-- <style>
+    .mashead {
+        min-height: 100vh;
+        /* width: 100%; */
+        background-size: cover;
+        /* background-position: center; */
+        position: relative;
+        color: white;
+        text-shadow: 2px 2px 2px rgba(0, 0, 0, .2);
+        font-family: "Open Sans", sans-serif;
+    }
+
+
+
+    .color-overlay {
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.3);
+        height: 100%;
+        width: 100%;
+    }
+
+    .container {
+        max-width: 1080px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+</style>
+
+<div class="mashead mx-3"
+    style="background-image: url(https://images.pexels.com/photos/325185/pexels-photo-325185.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940)">
+    <div class="color-overlay d-flex justify-content-center align-items-center">
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-12 d-flex flex-column flex-sm-column flex-lg-row">
+
+                    <div class="col-sm-4 mt-5">
+                        <h1>hi</h1>
+                    </div>
+
+                </div>
+                <div class="card col-sm-8">
+                    <div class="card-header">
+                        <h4>Contact Us</h4>
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Name</label>
+                                <input type="text" class="form-control" id="name" name="name" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="message" class="form-label">Message</label>
+                                <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+<script src="https://kit.fontawesome.com/a9e4777cad.js" crossorigin="anonymous"></script> -->

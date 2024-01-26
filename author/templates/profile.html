@@ -18,4 +18,31 @@
             <a class="btn btn-primary" href="{% url 'edit_profile' %}">Edit profile</a>
         </div>
     </div>
+    <div class="container">
+        <div class="row row-cols-sm-1 row-cols-md-1 row-cols-lg-1">
+            <div class="col-12">
+                <h3>Quiz attended by @{{user_profile2.user.username}}</h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Quiz</th>
+                            <th scope="col">Marks</th>
+                            <th scope="col">Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for submission in submissions %}
+                        <tr>
+                            <th scope="row">{{forloop.counter}}</th>
+                            <td title="{{submission.quiz.title}}">{{submission.quiz.title|truncatewords:6}}</td>
+                            <td>{{submission.score}}/{{submission.quiz.question_set.all|length}}</td>
+                            <td>{{submission.submitted_at|timesince}} ago</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
     {% endblock%}

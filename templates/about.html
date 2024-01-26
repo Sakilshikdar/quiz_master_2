@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}About{% endblock title %}
+{% block content %}
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        font-family: "Open Sans", sans-serif;
+        box-sizing: border-box;
+    }
+
+    .body {
+        max-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #f1f1f1;
+    }
+
+    .about-section {
+        background: url('https://img.freepik.com/free-photo/about-us-information-service-sharing-join-concept_53876-124056.jpg?size=626&ext=jpg&ga=GA1.1.1040978397.1692456620&semt=ais') no-repeat left;
+        background-size: 55%;
+        background-color: #fdfdfd;
+        overflow: hidden;
+        padding: 100px 0;
+    }
+
+    .inner-container {
+        width: 55%;
+        float: right;
+        background-color: #fdfdfd;
+        padding: 150px;
+        box-shadow: 0 50px 50px rgba(0, 0, 0, 0.1);
+    }
+
+    .inner-container h1 {
+        margin-bottom: 30px;
+        font-size: 30px;
+        font-weight: 900;
+    }
+
+    .text {
+        font-size: 16px;
+        color: #545454;
+        line-height: 30px;
+        text-align: justify;
+    }
+
+    .skills {
+        display: flex;
+        /* justify-content: space-between; */
+        gap: 30px;
+        flex-wrap: wrap;
+        margin: 0 20px;
+        font-weight: 700;
+        font-size: 13px;
+    }
+
+    @media screen and (max-width:1200px) {
+        .inner-container {
+            padding: 80px;
+        }
+    }
+
+    @media screen and (max-width:1000px) {
+        .about-section {
+            background-size: 100%;
+            padding: 100px 40px;
+        }
+
+        .inner-container {
+            width: 100%;
+        }
+    }
+
+    @media screen and (max-width:600px) {
+        .about-section {
+            padding: 0;
+        }
+
+        .inner-container {
+            padding: 60px;
+        }
+    }
+</style>
+<div class="body px-2">
+    <div class="about-section">
+        <div class="inner-container">
+            <h1>About Us</h1>
+            <p class="text">
+                <span class="font-bold text-warning fs-4">
+                    Quiz Master
+
+                </span>is a journey of knowledge and wit? Here, in the Quiz Master's domain,
+                you'll
+                encounter a
+                myriad of challenges that will test the limits of your intellect.Our curated quizzes cover a diverse
+                range
+                of topics, from history to science, pop culture to geography. The
+                Quiz
+                Master invites you to explore, learn, and, most importantly, have fun!Whether you're a seasoned quiz
+                aficionado or a newcomer eager to discover the joys of trivia, the Quiz Master
+                has
+                something for everyone. Earn accolades, climb the leaderboard, and bask in the glory of your quiz
+                victories.
+            </p>
+            <div class="skills ">
+                <span class="btn shadow-sm">CODING</span>
+                <span class="btn shadow-sm">PYTHON</span>
+                <span class="btn shadow-sm">CPP</span>
+                <span class="btn shadow-sm">JAVASCRIPT</span>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

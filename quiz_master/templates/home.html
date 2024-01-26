@@ -1,0 +1,383 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+<style>
+    .blurry-image {
+        filter: brightness(80%);
+        max-height: 750px;
+        max-width: 95%;
+    }
+
+    footer {
+        background: #101010;
+        padding: 86px 0;
+    }
+
+    .single-content {
+        text-align: center;
+        padding: 115px 0;
+    }
+
+    .single-box p {
+        color: #fff;
+        line-height: 1.9;
+    }
+
+    .single-box h3 {
+        font-size: 16px;
+        font-weight: 700;
+        color: #fff;
+    }
+
+    .single-box .card-area i {
+        color: #ffffff;
+        font-size: 20px;
+        margin-right: 10px;
+    }
+
+    .single-box ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .single-box ul li a {
+        text-decoration: none;
+        color: #fff;
+        line-height: 2.5;
+        font-weight: 100;
+    }
+
+    .single-box h2 {
+        color: #fff;
+        font-size: 20px;
+        font-weight: 700;
+    }
+
+    #basic-addon2 {
+        background: #fe1e4f;
+        color: #fff;
+    }
+
+    .socials i {
+        font-size: 18px;
+        margin-right: 15px;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .hr-line {
+        width: 100%;
+        height: 2px;
+        background-color: silver;
+    }
+
+    @media (max-width: 767px) {
+        .single-box {
+            margin-bottom: 50px;
+        }
+    }
+
+    @media (min-width: 768px) and (max-width: 991px) {
+        .single-box {
+            margin-bottom: 50px;
+        }
+    }
+</style>
+
+<div class="mx-auto pt-5">
+    <div id="carouselExampleControls" class="carousel slide " data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img class="d-block mx-auto w-100 blurry-image" src="{% static 'images/quiz-1.jpg' %}" alt="Your Image">
+                <div class="carousel-caption d-none d-md-block">
+                    <h2 class="font-weight-bold">Unlock Your Mind's Potential</h2>
+                    <p class="font-weight-bold">Welcome to BrainTease Challenge, the ultimate quiz application designed
+                        to tickle your brain cells and test your
+                        knowledge across a myriad of fascinating topics! Strap in for an exhilarating ride through a
+                        carousel of mind-bending
+                        questions that will push the boundaries of your intellect..</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img class="d-block mx-auto w-100 blurry-image" src="{% static 'images/quiz.jpg' %}" alt="Your Image">
+                <div class="carousel-caption d-none d-md-block">
+                    <h2 class="font-weight-bold">Brain Teasers Galore</h2>
+                    <p class="font-weight-bold">Welcome to "Brain Teasers Galore," where every question is a journey
+                        into the depths of your mind. Challenge yourself
+                        with a diverse range of quizzes that will test your cognitive abilities and leave you craving
+                        for more. From logic
+                        puzzles to riddles and everything in between, this carousel promises to be a mental workout like
+                        no other. Sharpen your
+                        wits and dive into the world of brain teasers. Are you ready to unravel the mysteries within?
+                    </p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img class="d-block mx-auto w-100 blurry-image" src="{% static 'images/quiz-2.jpg' %}" alt="Your Image">
+                <div class="carousel-caption d-none d-md-block">
+                    <h2 class="font-weight-bold">Mastermind's Challenge</h2>
+                    <p class="font-weight-bold">Brace yourself for the ultimate intellectual showdown in "Mastermind's
+                        Challenge." This carousel is designed for those
+                        who crave a mental duel. Test your problem-solving skills, strategic thinking, and general
+                        knowledge against a barrage
+                        of challenging questions. Each quiz is a battle of wits, and only the sharpest minds will emerge
+                        victorious. Do you have
+                        what it takes to be crowned the Mastermind? Engage in the challenge and find out!</p>
+                </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only"></span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only"></span>
+        </a>
+    </div>
+</div>
+
+
+
+<!------------- service -------------->
+<!-- <div class="card-columns"> -->
+<div class=" d-flex flex-wrap">
+    <div>
+
+        <img class="card-img-top w-100 p-5"
+            src="https://www.sapphiresolutions.net/images/quiz_app_development_services/images/quiz_app_banner.svg"
+            alt="Card image cap">
+    </div>
+    <div class="card-body my-auto w-50 p-5">
+        <h3 class="card-title ">Quiz Master !</h3>
+        <p class="card-text font-weight-bold">
+            Are you ready to embark on a journey of knowledge and wit? Here, in the Quiz Master's domain, you'll
+            encounter a
+            myriad of challenges that will test the limits of your intellect.Our curated quizzes cover a diverse range
+            of topics, from history to science, pop culture to geography. The
+            Quiz
+            Master invites you to explore, learn, and, most importantly, have fun!Whether you're a seasoned quiz
+            aficionado or a newcomer eager to discover the joys of trivia, the Quiz Master
+            has
+            something for everyone. Earn accolades, climb the leaderboard, and bask in the glory of your quiz victories.
+
+        </p>
+        {% if request.user.is_authenticated%}
+        <div class="d-flex mt-5">
+            <button class="btn btn-warning btn-lg active mx-3"><a class="text-decoration-none text-white"
+                    href="{% url 'quiz_list' %}">Start Quiz</a></button>
+            <button class="btn btn-warning btn-lg active "><a class="text-decoration-none text-white"
+                    href="{% url 'register' %}">Register</a></button>
+        </div>
+        {%else%}
+        <div class="d-flex mt-5">
+            <button class="btn btn-warning btn-lg active mx-3"><a class="text-decoration-none text-white"
+                    href="{% url 'user_login' %}">Start Quiz</a></button>
+            <button class="btn btn-warning btn-lg active "><a class="text-decoration-none text-white"
+                    href="{% url 'register' %}">Register</a></button>
+        </div>
+        {%endif%}
+
+    </div>
+</div>
+
+
+<!-- blog start -->
+<h2 class="px-5 mx-auto text-center font-italic">Blogs
+    </br>
+    </br>
+    <div class="hr-line"></div>
+</h2>
+<div class="card-deck p-5 gap-3">
+    <div class="card">
+        <img class="card-img-top p-3"
+            src="https://prepbytes-misc-images.s3.ap-south-1.amazonaws.com/assets/1644309437715-Sorting%20image-24.png"
+            alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">PYTHON</h5>
+            <p class="card-text">Python stands out as a versatile and powerful tool that has captivated developers
+                worldwide. Known for its simplicity,
+                readability, and a vast ecosystem of libraries, Python has become a go-to language for a myriad of
+                applications.</p>
+        </div>
+    </div>
+    <div class="card">
+        <img class="card-img-top p-3"
+            src="data:image/jpeg;base64,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">
+        <div class="card-body">
+            <h5 class="card-title">JAVASCRIPT</h5>
+            <p class="card-text">Welcome to the dynamic world of JavaScript, the unsung hero behind the interactivity
+                and responsiveness of the modern
+                web. From enhancing user interfaces to enabling powerful backend operations, JavaScript plays a pivotal
+                role in shaping
+                the digital landscape. </p>
+        </div>
+    </div>
+    <div class="card">
+        <img class="card-img-top p-3" src="{% static 'images/DATA.jpg' %}" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">DARA STRUCTURE</h5>
+            <p class="card-text">In the realm of computer science, data structures stand as the architectural foundation
+                upon which efficient algorithms
+                and robust software applications are built. They are the unsung heroes, silently shaping the way
+                information is stored,
+                retrieved, and manipulated.</p>
+        </div>
+    </div>
+</div>
+
+
+<!---------------------------- footer start----------------------------- -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-sm-6">
+                <div class="single-box">
+                    <h2>Follow us on</h2>
+                    <p class="socials d-flex m-auto">
+                        <i class="w-25"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28.87 28.87" id="facebook">
+                                <g data-name="Layer 2">
+                                    <g data-name="Layer 1">
+                                        <rect width="28.87" height="28.87" fill="#4c76be" rx="6.48" ry="6.48">
+                                        </rect>
+                                        <path fill="#fff" fill-rule="evenodd"
+                                            d="M16.86 9.29h1.65V6.76c-.26 0-.53-.06-.8-.08h-1.49a3.65 3.65 0 0 0-2.1.65 3.15 3.15 0 0 0-1.27 2.1 7.39 7.39 0 0 0-.09 1.08v1.91h-2.41v2.81h2.4v7.07h2.93v-7.08h2.39l.37-2.83h-2.78v-2c.05-.83.54-1.08 1.2-1.1z">
+                                        </path>
+                                    </g>
+                                </g>
+                            </svg></i>
+                        <i class="fa fa-dribbble w-25"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28.87 28.87"
+                                id="youtube">
+                                <g data-name="Layer 2">
+                                    <g data-name="Layer 1">
+                                        <rect width="28.87" height="28.87" fill="#fd3832" rx="6.48" ry="6.48">
+                                        </rect>
+                                        <path fill="#fff" fill-rule="evenodd"
+                                            d="M8 19.77a1.88 1.88 0 0 1-1.24-1.21c-.54-1.48-.7-7.66.34-8.88A2 2 0 0 1 8.46 9c2.79-.3 11.41-.26 12.4.1a1.94 1.94 0 0 1 1.22 1.17c.59 1.53.61 7.09-.08 8.56a1.89 1.89 0 0 1-.87.88c-1.04.52-11.75.51-13.13.06zm4.43-2.9l5-2.6-5-2.62z">
+                                        </path>
+                                    </g>
+                                </g>
+                            </svg></i>
+                        <i class="fa fa-pinterest w-25"><svg xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink" data-name="Layer 1" viewBox="0 0 128 128"
+                                id="instagram">
+                                <defs>
+                                    <clipPath id="b">
+                                        <circle cx="64" cy="64" r="64" fill="none"></circle>
+                                    </clipPath>
+                                    <clipPath id="c">
+                                        <path fill="none"
+                                            d="M104-163H24a24.07 24.07 0 0 0-24 24v80a24.07 24.07 0 0 0 24 24h80a24.07 24.07 0 0 0 24-24v-80a24.07 24.07 0 0 0-24-24Zm16 104a16 16 0 0 1-16 16H24A16 16 0 0 1 8-59v-80a16 16 0 0 1 16-16h80a16 16 0 0 1 16 16Z">
+                                        </path>
+                                    </clipPath>
+                                    <clipPath id="e">
+                                        <circle cx="82" cy="209" r="5" fill="none"></circle>
+                                    </clipPath>
+                                    <clipPath id="g">
+                                        <path fill="none"
+                                            d="M64-115a16 16 0 0 0-16 16 16 16 0 0 0 16 16 16 16 0 0 0 16-16 16 16 0 0 0-16-16Zm0 24a8 8 0 0 1-8-8 8 8 0 0 1 8-8 8 8 0 0 1 8 8 8 8 0 0 1-8 8Z">
+                                        </path>
+                                    </clipPath>
+                                    <clipPath id="h">
+                                        <path fill="none"
+                                            d="M84-63H44a16 16 0 0 1-16-16v-40a16 16 0 0 1 16-16h40a16 16 0 0 1 16 16v40a16 16 0 0 1-16 16Zm-40-64a8 8 0 0 0-8 8v40a8 8 0 0 0 8 8h40a8 8 0 0 0 8-8v-40a8 8 0 0 0-8-8Z">
+                                        </path>
+                                    </clipPath>
+                                    <clipPath id="i">
+                                        <circle cx="82" cy="-117" r="5" fill="none"></circle>
+                                    </clipPath>
+                                    <radialGradient id="a" cx="27.5" cy="121.5" r="137.5"
+                                        gradientUnits="userSpaceOnUse">
+                                        <stop offset="0" stop-color="#ffd676"></stop>
+                                        <stop offset=".25" stop-color="#f2a454"></stop>
+                                        <stop offset=".38" stop-color="#f05c3c"></stop>
+                                        <stop offset=".7" stop-color="#c22f86"></stop>
+                                        <stop offset=".96" stop-color="#6666ad"></stop>
+                                        <stop offset=".99" stop-color="#5c6cb2"></stop>
+                                    </radialGradient>
+                                    <radialGradient id="d" cx="27.5" cy="-41.5" r="148.5" xlink:href="#a">
+                                    </radialGradient>
+                                    <radialGradient id="f" cx="13.87" cy="303.38" r="185.63" xlink:href="#a">
+                                    </radialGradient>
+                                    <radialGradient id="j" cx="13.87" cy="-22.62" r="185.63" xlink:href="#a">
+                                    </radialGradient>
+                                </defs>
+                                <g clip-path="url(#b)">
+                                    <circle cx="27.5" cy="121.5" r="137.5" fill="url(#a)"></circle>
+                                </g>
+                                <g clip-path="url(#c)">
+                                    <circle cx="27.5" cy="-41.5" r="148.5" fill="url(#d)"></circle>
+                                </g>
+                                <g clip-path="url(#e)">
+                                    <circle cx="13.87" cy="303.38" r="185.63" fill="url(#f)"></circle>
+                                </g>
+                                <g clip-path="url(#g)">
+                                    <circle cx="27.5" cy="-41.5" r="148.5" fill="url(#d)"></circle>
+                                </g>
+                                <g clip-path="url(#h)">
+                                    <circle cx="27.5" cy="-41.5" r="148.5" fill="url(#d)"></circle>
+                                </g>
+                                <g clip-path="url(#i)">
+                                    <circle cx="13.87" cy="-22.62" r="185.63" fill="url(#j)"></circle>
+                                </g>
+                                <circle cx="82" cy="46" r="5" fill="#fff"></circle>
+                                <path fill="#fff"
+                                    d="M64 48a16 16 0 1 0 16 16 16 16 0 0 0-16-16Zm0 24a8 8 0 1 1 8-8 8 8 0 0 1-8 8Z">
+                                </path>
+                                <rect width="64" height="64" x="32" y="32" fill="none" stroke="#fff"
+                                    stroke-miterlimit="10" stroke-width="8" rx="12" ry="12"></rect>
+                            </svg></i>
+                        <i class="fa fa-twitter w-25"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"
+                                id="twitter">
+                                <path fill="#03A9F4"
+                                    d="M16 3.539a6.839 6.839 0 0 1-1.89.518 3.262 3.262 0 0 0 1.443-1.813 6.555 6.555 0 0 1-2.08.794 3.28 3.28 0 0 0-5.674 2.243c0 .26.022.51.076.748a9.284 9.284 0 0 1-6.761-3.431 3.285 3.285 0 0 0 1.008 4.384A3.24 3.24 0 0 1 .64 6.578v.036a3.295 3.295 0 0 0 2.628 3.223 3.274 3.274 0 0 1-.86.108 2.9 2.9 0 0 1-.621-.056 3.311 3.311 0 0 0 3.065 2.285 6.59 6.59 0 0 1-4.067 1.399c-.269 0-.527-.012-.785-.045A9.234 9.234 0 0 0 5.032 15c6.036 0 9.336-5 9.336-9.334 0-.145-.005-.285-.012-.424A6.544 6.544 0 0 0 16 3.539z">
+                                </path>
+                            </svg></i>
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+                <div class="single-box">
+                    <h2>Services</h2>
+                    <ul>
+                        <li><a href="#">Free Quiz</a></li>
+                        <li><a href="#">See Result</a></li>
+                        <li><a href="#">Show Leaderboad</a></li>
+                        <li><a href="#">Show User</a></li>
+                        <li><a href="#">Email Sending</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+                <div class="single-box">
+                    <h2>About Us</h2>
+                    <ul>
+                        <li><a href="#">Quiz Platform</a></li>
+                        <li><a href="#">Quiz Crate</a></li>
+                        <li><a href="#">Provide Email</a></li>
+                        <li><a href="#">Free Account</a></li>
+                        <li><a href="#">Free Access</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+                <div class="single-box">
+                    <h2>Newsletter</h2>
+                    <p>Certainly! Adding new features to a quiz app can enhance user engagement and provide
+                        additional
+                        value. Here are some
+                        ideas for new features we might consider adding</p>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Recipient's username"
+                            aria-label="Enter your Email ..." aria-describedby="basic-addon2">
+                        <span class="input-group-text" id="basic-addon2"><i class="fa fa-long-arrow-right"></i></span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+{% endblock %}

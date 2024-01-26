@@ -9,13 +9,111 @@
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/css/swiffy-slider.min.css" rel="stylesheet"
+        crossorigin="anonymous">
+
 </head>
 
 <body>
     <style>
         .logo {
             margin-left: 150px;
+        }
 
+        footer {
+            background: #101010;
+            padding: 86px 0;
+            overflow: hidden;
+            margin-top: 20px;
+        }
+
+        .single-content {
+            text-align: center;
+            padding: 115px 0;
+        }
+
+        .single-box p {
+            color: #fff;
+            line-height: 1.9;
+        }
+
+        .single-box h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .single-box .card-area i {
+            color: #ffffff;
+            font-size: 20px;
+            margin-right: 10px;
+        }
+
+        .single-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .single-box ul li a {
+            text-decoration: none;
+            color: #fff;
+            line-height: 2.5;
+            font-weight: 100;
+        }
+
+        .single-box h2 {
+            color: #fff;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        #basic-addon2 {
+            background: #fe1e4f;
+            color: #fff;
+        }
+
+        .socials i {
+            font-size: 18px;
+            margin-right: 15px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .hr-line {
+            width: 100%;
+            height: 2px;
+            background-color: silver;
+        }
+
+
+
+        @media (max-width: 767px) {
+            .single-box {
+                margin-bottom: 50px;
+            }
+
+            .logo {
+                margin-left: 0px;
+            }
+        }
+
+        @media (min-width: 768px) and (max-width: 991px) {
+            .single-box {
+                margin-bottom: 50px;
+            }
+        }
+
+
+        .navbar-nav .nav-item a {
+            color: #000;
+            transition: color 0.4s ease-in-out, background-color 0.4s ease-in-out, font-size 0.4s ease-in-out, padding 0.4s ease-in-out;
+        }
+
+        .navbar-nav .nav-item a:hover {
+            padding: 10px;
+            font-size: larger;
+            color: #fff;
+            background-color: rgb(207, 147, 17);
         }
     </style>
     {% load static %}
@@ -25,7 +123,6 @@
                 <a class="" href="{% url 'homepage' %}"><img class="w-50" src="{% static 'images/logo2.png' %}"
                         alt=""></a>
             </div>
-            <!-- <a class="navbar-brand" href="#">Navbar</a> -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -35,36 +132,58 @@
                     <li class="nav-item">
                     </li>
                 </ul>
-                <div class="d-flex " role="search">
+                <div class="d-flex" role="search">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 py-3 ">
                         {% if request.user.is_authenticated%}
                         <li class=" hober one nav-item mx-3 py-2">
-                            <a class="nav-link btn  text-dark font-xl font-weight-bold border border-warning "
+                            <a class="btn font-xl py-2 font-weight-bold border border-warning"
                                 href="{% url 'homepage' %}">Home</a>
                         </li>
-                        <li class="two nav-item mx-3 py-2">
-                            <a class="nav-link btn  text-dark font-weight-bold border border-warning"
-                                href="{% url 'edit_profile' %}">Profile</a>
+
+                        <li class="nav-item mx-3 py-2">
+                            <a class="btn font-xl py-2 font-weight-bold border border-warning"
+                                href="{% url 'all_quiz' %}">Quiz list</a>
                         </li>
                         <li class="nav-item mx-3 py-2">
-                            <a class="nav-link btn  text-dark font-xl font-weight-bold border border-warning"
-                                href="{% url 'user_logout' %}">Logout</a>
+                            <a class="btn font-xl py-2 font-weight-bold border border-warning"
+                                href="{% url 'leaderboard' %}">Leaderboard</a>
+                        </li>
+
+                        <li class="nav-item dropdown py-2 mx-auto">
+                            <a class="btn font-xl py-2 font-weight-bold border border-warning dropdown-toggle" href="#"
+                                id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Dashboard
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                                <li class="two nav-item  py-2">
+                                    <a class="btn dropdown-item font-xl py-2 font-weight-bold border border-warning mx-auto"
+                                        style="width: 80%;" href="{% url 'edit_profile' %}">Profile</a>
+                                </li>
+                                <li class="nav-item py-2">
+                                    <a class="btn dropdown-item font-xl font-weight-bold border border-warning mx-auto"
+                                        style="width: 80%;" href="{% url 'user_logout' %}">Logout</a>
+                                </li>
+                            </ul>
+                        </li>
+
+
+                        <li class="nav-item mx-3 py-2">
+                            <a class="btn font-xl py-2 font-weight-bold border border-warning"
+                                href="{% url 'about' %}">About Us</a>
                         </li>
                         <li class="nav-item mx-3 py-2">
-                            <a class="nav-link btn  text-dark font-xl font-weight-bold border border-warning"
-                                href="{% url 'quiz_list' %}">Quiz list</a>
+                            <a class="btn font-xl py-2 font-weight-bold border border-warning"
+                                href="{% url 'contact' %}">Contact Us</a>
                         </li>
-                        <li class="nav-item mx-3 py-2">
-                            <a class="nav-link btn  text-dark font-xl font-weight-bold border border-warning"
-                                href="{% url 'user_dashboard' %}">Dashboard</a>
-                        </li>
+
                         {%else%}
                         <li class="nav-item py-2">
-                            <a class="nav-link btn  text-dark font-xl font-weight-bold border border-warning"
+                            <a class="btn font-xl py-2 font-weight-bold border border-warning"
                                 href="{% url 'user_login' %}">Login</a>
                         </li>
                         <li class="nav-item mx-3 py-2">
-                            <a class="nav-link btn  text-dark font-xl font-weight-bold border border-warning "
+                            <a class="btn font-xl py-2 font-weight-bold border border-warning"
                                 href="{% url 'register' %}">register</a>
                         </li>
 
@@ -74,14 +193,10 @@
             </div>
         </div>
     </nav>
-    <!-- 
-    {% if messages %}
-    <ul class="messages">
-        {% for message in messages %}
-        <h3>{{ message }}</h3>
-        {% endfor %}
-    </ul>
-    {% endif %} -->
+
+
+
+
 
     {% if messages %}
     {% for message in messages %}
@@ -99,6 +214,68 @@
     {% endif %}
 
     {% block content %} {% endblock %}
+
+    <!-- --------footer start---------     -->
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single-box">
+                        <h2>Follow us on</h2>
+                        <p class="socials d-flex m-auto">
+                            <i class="fa-brands fa-google fs-2"></i>
+                            <i class="fa-brands fa-square-twitter fs-2"></i>
+                            <i class="fa-brands fa-instagram fs-2"></i>
+                            <i class="fa-brands fa-facebook fs-2"></i>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single-box">
+                        <h2>Services</h2>
+                        <ul>
+                            <li><a href="#">Free Quiz</a></li>
+                            <li><a href="#">See Result</a></li>
+                            <li><a href="#">Show Leaderboad</a></li>
+                            <li><a href="#">Show User</a></li>
+                            <li><a href="#">Email Sending</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single-box">
+                        <h2>About Us</h2>
+                        <ul>
+                            <li><a href="#">Quiz Platform</a></li>
+                            <li><a href="#">Quiz Crate</a></li>
+                            <li><a href="#">Provide Email</a></li>
+                            <li><a href="#">Free Account</a></li>
+                            <li><a href="#">Free Access</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single-box">
+                        <h2>Newsletter</h2>
+                        <p>Certainly! Adding new features to a quiz app can enhance user engagement and provide
+                            additional
+                            value. Here are some
+                            ideas for new features we might consider adding</p>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Recipient's username"
+                                aria-label="Enter your Email ..." aria-describedby="basic-addon2">
+                            <span class="input-group-text" id="basic-addon2"><i
+                                    class="fa fa-long-arrow-right"></i></span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
@@ -112,6 +289,9 @@
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://kit.fontawesome.com/a9e4777cad.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/js/swiffy-slider.min.js" crossorigin="anonymous"
+        defer></script>
 </body>
 
 </html>

@@ -1,15 +1,54 @@
 {% extends 'base.html' %} {% load crispy_forms_tags%} {% block content %}
+{% load static%}
 
+<style>
+    .pf {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
 
-<form class="w-50 m-auto" method="post">
-    <h1>{{type}} page</h1>
-    <a class="btn btn-warning btn-sm" href="{% url 'change_pass' %}">Change your password</a>
-    </br>
-    {% csrf_token %}
-    <!-- {{data | crispy}} -->
-    {% for fm in data%} {{fm.label_tag}} {{fm}} {{fm.errors|striptags}}
-    {% endfor %}
-    <button class="btn mb-3 btn-primary">submit</button>
-</form>
+    }
+
+    .sbtn {
+        transition: color 0.5s ease-in-out, background-color 0.5s ease-in-out, font-size 0.5s ease-in-out, padding 0.5s ease-in-out;
+        font-weight: 600;
+    }
+
+    .sbtn:hover {
+        color: black;
+        padding: 10px;
+        font-size: larger;
+        color: #fff;
+        font-weight: 700;
+        background-color: blue;
+    }
+</style>
+
+<!-- <div class="d-flex"> -->
+<div class="d-flex ">
+    <div class="card pf-container text-white p-5  mb-3 mx-auto shadow  m-auto">
+        {% if user.profile.image %}
+        <img src={user.image.url} alt="">
+        {% else %}
+        <img class="mx-auto" src="{% static 'images/user.jpeg/' %}" alt="">
+        {% endif %}
+        {}
+        <div class="text-center">
+            <h5 class="text-black">Name: {{user.first_name}} {{user.last_name}}</h5>
+            <h5 class="text-black">Email: {{user.email}}</h5>
+        </div>
+    </div>
+
+    <form class="w-50 h-75 m-auto" method="post">
+        <h1 class="mb-3">Update Profile</h1>
+        <a class="btn btn-warning btn-sm" href="{% url 'change_pass' %}">Change your password</a>
+        </br>
+        {% csrf_token %}
+        <!-- {{data | crispy}} -->
+        {% for fm in data%} {{fm.label_tag}} {{fm}} {{fm.errors|striptags}}
+        {% endfor %}
+        <button class="btn sbtn px-4 my-3 btn-primary">submit</button>
+    </form>
+</div>
 
 {% endblock%}

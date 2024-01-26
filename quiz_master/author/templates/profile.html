@@ -1,0 +1,21 @@
+{% extends 'base.html' %} {% load crispy_forms_tags%} {% block content %}
+
+
+<div class="mt-5 flex-wrap justify-content-center">
+    <h1>{{type}} page</h1>
+    <div class="card mx-2 card-body">
+        <img class="card-img-top w-50 mx-auto" src={{data.image.url}} alt="">
+        <h1 class="card-title">{{clicked_posts.title}}</h1>
+        <p class="card-text">{{data.content}}</p>
+        <p>{{data.author.name}}</p>
+        <p>Price: {{data.Price}} $</p>
+        <p>
+            category: {% for cat in data.categorie.all %}
+            <button class="btn btn-warning btn-sm mt-2">{{cat.name}}</button>
+            {% endfor %}
+        </p>
+        <div>
+            <a class="btn btn-primary" href="{% url 'edit_profile' %}">Edit profile</a>
+        </div>
+    </div>
+    {% endblock%}

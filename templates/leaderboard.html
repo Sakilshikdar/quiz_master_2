@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Leaderboard - BrainBunny{% endblock title %}
+
+{% block content %}
+<style>
+    .hr-line {
+        width: 100%;
+        height: 2px;
+        background-color: silver;
+    }
+</style>
+<div class="container text-center">
+    <h1 class=" text-center">Leaderboard</h1>
+
+    <div class="hr-line"></div>
+
+
+    <div class="row row-cols-sm-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 mx-3 mt-5">
+        {% if leaderboard_users|length == 0 %}
+        <div class="col-lg-4 position-relative mb-4">
+            <h4 class="text-center text-danger">No User Available on Leaderboard!!</h4>
+        </div>
+        {% else %}
+        {% for rank in leaderboard_users %}
+        <div class="col-lg-4 position-relative mb-4 my-auto">
+            {% if rank.user.profile.profile_img %}
+            <img src="{{rank.user.profile.profile_img.url}}" class="img-fluid" width="150" height="150"
+                alt="user-profile">
+            {% else %}
+            <img src="{% static 'images/user.jpeg' %}" class="img-fluid" width="150" height="150" alt="user-profile">
+
+            {% endif %}
+            <span
+                class="position-absolute top-0 start-90 translate-middle badge rounded-pill bg-success">{{forloop.counter}}</span>
+            <h2 class="fw-normal">{{rank.user.username}}</h2>
+            <p>{{rank.user.profile.bio|truncatewords:5}}</p>
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+</div>
+<div class="container mb-5">
+    <div class="row row-cols-sm-1 row-cols-md-1 row-cols-lg-1">
+        <div class="col-12">
+            <h3 class="text-center mt-3">History</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">No</th>
+                        <th scope="col">Quiz</th>
+                        <th scope="col">Marks</th>
+                        <th scope="col">Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for submission in submissions %}
+                    <tr>
+                        <th scope="row">{{forloop.counter}}</th>
+                        <td title="{{submission.quiz.title}}">{{submission.quiz.title|truncatewords:6}}</td>
+                        <td>{{submission.score}}</td>
+                        <td>{{submission.user.username}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock content %}

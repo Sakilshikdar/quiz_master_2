@@ -1,6 +1,23 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
+
+<style>
+    .sbtn {
+        transition: color 0.5s ease-in-out, background-color 0.5s ease-in-out, font-size 0.5s ease-in-out, padding 0.5s ease-in-out;
+        font-weight: 600;
+    }
+
+    .sbtn:hover {
+        color: black;
+        padding: 10px;
+        font-size: larger;
+        color: #fff;
+        font-weight: 700;
+        background-color: blue;
+    }
+</style>
+
 <form class="m-auto" method="post">
     {% if type == 'Login' %}
     <div class="d-lg-flex font-weight-bold font-italic mt-5">
@@ -12,9 +29,9 @@
         <div class="w-100 m-auto p-3">
             <h1 class="">{{ type }}</h1>
             {% csrf_token %} {{ form | crispy }}
-            <button class="btn mb-3 btn-primary">submit</button>
+            <button class="btn mb-3 btn-primary sbtn px-4">submit</button>
             <br />
-            <p> Don't have an account please <a href="{% url 'register' %}">Create account</a></p>
+            <p> Don't have an account please? <a href="{% url 'register' %}">Create account.</a></p>
         </div>
     </div>
     {% else %}
@@ -25,9 +42,9 @@
         {% for fm in form%} {{fm.label_tag}} {{fm}} {{fm.errors|striptags}}
         {% endfor %}
         <br />
-        <button class="btn btn-primary" type="submit">Submit</button>
+        <button class="sbtn btn btn-primary px-4 mb-2" type="submit">Submit</button>
         <br />
-        <p> Already have an account <a href="{% url 'user_login' %}">Login</a></p>
+        <p> Already have an account? <a href="{% url 'user_login' %}">Login.</a></p>
     </div>
     {% endif %}
 </form>

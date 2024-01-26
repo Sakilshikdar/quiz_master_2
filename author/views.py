@@ -1,4 +1,6 @@
 
+from django.template.loader import render_to_string
+from django.core.mail import EmailMultiAlternatives
 from django.shortcuts import render, redirect
 from .import forms
 from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
@@ -11,10 +13,10 @@ from django.urls import reverse_lazy
 # from car.models import Post
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin
+from .models import Profile
+from quizm.models import QuizSubmission
 
-
-from django.core.mail import EmailMultiAlternatives
-from django.template.loader import render_to_string
+print('user', User.objects.all())
 
 
 def register(request):
@@ -40,6 +42,21 @@ def checkmail(request):
 
     message = "Check your mail for confirmation"
     return render(request, 'check.html', {'message': message})
+
+
+def profile(request, username):
+    user_object2 = User.objects.get(username=username)
+    user_profile2, created = Profile.objects.get_or_create(user=user_object2)
+
+    # request user
+    user_object = request.user
+    user_profile, created = Profile.objects.get_or_create(user=user_object)
+
+    submissions = QuizSubmission.objects.filter(user=user_object2)
+
+    context = {"user_profile": user_profile,
+               "user_profile2": user_profile2, "submissions": submissions}
+    return render(request, "profile.html", context)
 
 
 class LoginView(LoginView):
@@ -84,7 +101,7 @@ def edit_profile(request):
             return redirect('edit_profile')
     else:
         profile_form = forms.changeUserForm(instance=request.user)
-    return render(request, 'update_profile.html', {'data': profile_form, })
+    return render(request, 'update_profile.html', {'data': profile_form, 'user': request.user})
 
 
 def change_pass(request):
