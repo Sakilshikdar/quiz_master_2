@@ -19,15 +19,21 @@
         font-weight: 700;
         background-color: blue;
     }
+
+    .htext {
+        margin-bottom: 30px;
+        font-size: 30px;
+        font-weight: 900;
+    }
 </style>
 
-<h1 class="display-4 text-center my-5">{{quiz.title}} - ({{quiz.question_set.all|length}})</h1>
+<h1 class="display-4 text-center my-5 htext">{{quiz.title}} - ({{quiz.question_set.all|length}})</h1>
 <p class="fs-4 text-center container">{{quiz.description}}</p>
 
 <div class="container">
     <div class="d-flex justify-content-between">
         <span class="fs-5">{{quiz.created_at}}</span>
-        <span class="fs-5" id="timer">10:00</span>
+        <span class="fs-5" id="timer">00</span>
     </div>
 
     {% for message in messages %}
@@ -83,37 +89,40 @@
 
     quizDuration = (questions.length) * 10; // convert in seconds
 
-    // Update Timer
+
     function updateTimer() {
         var minutes = Math.floor(quizDuration / 60);
         var seconds = quizDuration % 60;
 
         timerSpan.innerText = minutes + "m" + seconds + 's';
 
-        // Check if the time ended
+        if (quizDuration == 0) {
+            quizDuration = 10;
+            submitButton.disabled = true;
+
+        }
         if (quizDuration <= 0) {
-            // Automatically Submit the quiz
+
             clearTimeout(quizTimerId);
             submitQuiz();
         } else if (document.getElementById("message-div")) {
             clearTimeout(quizTimerId);
             highlightCorrectAnswers();
         } else {
-            // decrement the timer value by 1s
+
             quizDuration--;
         }
     }
 
     // Function to submit the quiz
     function submitQuiz() {
-        // Calculate the score
         calculateScore();
 
-        // Submit the quiz
+
         quizForm.submit();
     }
 
-    // Check right answer and then calculate the score
+
     function calculateScore() {
         var score = 0;
 
@@ -128,11 +137,10 @@
             }
         });
 
-        // Update the hidden input field with score in form
         userScoreInput.value = score;
     }
 
-    // highlight correct answer while showing result
+
     function highlightCorrectAnswers() {
         questions.forEach(question => {
             var correctAnswer = question.querySelector(".correct-answer");
@@ -140,20 +148,20 @@
             correctAnswer.previousElementSibling.classList.add("fw-bold");
         });
 
-        // disable submit button
+
         submitButton.disabled = true;
 
-        // disabel all options
+
         var options = document.querySelectorAll(".form-check-input");
         options.forEach(option => {
             option.disabled = true;
         });
     }
 
-    // Attach Event Listener to Submit button
+
     submitButton.addEventListener("click", submitQuiz);
 
-    // Timer Interval
+
     quizTimerId = setInterval(updateTimer, 1000);
 </script>
 

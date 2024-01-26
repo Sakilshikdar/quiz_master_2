@@ -11,6 +11,7 @@ from author.models import Profile
 
 @login_required(login_url='user_login')
 def all_quiz_view(request):
+    print('requ', request)
 
     quizzes = Quiz.objects.order_by('-created_at')
     categories = Category.objects.all()

@@ -16,35 +16,56 @@
         font-weight: 700;
         background-color: blue;
     }
+
+    .rg-imag {
+        width: 700px
+    }
+
+    @media screen and (max-width: 768px) {
+        .rg-imag {
+            width: 100%;
+        }
+
+        .log-image {
+            width: 100%;
+
+        }
+    }
 </style>
 
 <form class="m-auto" method="post">
     {% if type == 'Login' %}
-    <div class="d-lg-flex font-weight-bold font-italic mt-5">
-        <div class="p-5">
-            <img class=" d-flex align-items-center justify-content-center rounded"
+    <div class="d-lg-flex mb-5 font-weight-bold font-italic ">
+        <div class="px-5">
+            <img class=" d-flex align-items-center log-image justify-content-center rounded"
                 src="https://thumbs.dreamstime.com/z/isometric-flat-vector-concept-online-exam-questionnaire-form-online-education-survey-internet-quiz-survey-exam-form-long-126725385.jpg?w=768"
                 alt="">
         </div>
-        <div class="w-100 m-auto p-3">
+        <div class="w-100 m-auto px-3">
             <h1 class="">{{ type }}</h1>
             {% csrf_token %} {{ form | crispy }}
-            <button class="btn mb-3 btn-primary sbtn px-4">submit</button>
+            <button class="btn  btn-primary sbtn px-4">submit</button>
             <br />
             <p> Don't have an account please? <a href="{% url 'register' %}">Create account.</a></p>
         </div>
     </div>
     {% else %}
-    <div class="w-50 mx-auto  font-weight-bold font-italic mt-5">
-        <h1>Create account</h1>
-        {% csrf_token %}
-        <!-- {{form | crispy }} -->
-        {% for fm in form%} {{fm.label_tag}} {{fm}} {{fm.errors|striptags}}
-        {% endfor %}
-        <br />
-        <button class="sbtn btn btn-primary px-4 mb-2" type="submit">Submit</button>
-        <br />
-        <p> Already have an account? <a href="{% url 'user_login' %}">Login.</a></p>
+    <div class="d-flex flex-wrap">
+        <div class="col-lg-6  mt-5 col-sm-6 pt-lg-4 pl-3">
+            <img class=" m-auto rg-imag d-flex align-items-center pt-lg-3  justify-content-center rounded shadow"
+                src="https://srbps.com/wp-content/uploads/2020/09/Best-Free-WordPress-Registration-Plugins.jpg" alt="">
+        </div>
+        <div class="w-100 m-auto px-3 col-lg-6 px-sm-4">
+            <h1>Create account</h1>
+            {% csrf_token %}
+            <!-- {{form | crispy }} -->
+            {% for fm in form%} {{fm.label_tag}} {{fm}} {{fm.errors|striptags}}
+            {% endfor %}
+            <br />
+            <button class="sbtn btn btn-primary px-4 mb-2" type="submit">Submit</button>
+            <br />
+            <p> Already have an account? <a href="{% url 'user_login' %}">Login.</a></p>
+        </div>
     </div>
     {% endif %}
 </form>

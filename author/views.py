@@ -111,7 +111,7 @@ def change_pass(request):
             form.save()
             messages.success(request, 'Password changed successfully')
             update_session_auth_hash(request, form.user)
-            return redirect('profile')
+            return redirect('edit_profile')
     else:
         form = PasswordChangeForm(user=request.user)
     return render(request, 'change_pass.html', {'data': form, })

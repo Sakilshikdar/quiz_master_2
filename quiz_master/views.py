@@ -4,10 +4,16 @@ from author.models import Profile
 from quizm.models import UserRank
 from django.contrib.auth.models import User
 from quizm.models import QuizSubmission
+from quizm.models import Quiz, Category
 
 
 def home(request, category_slug=None):
-    return render(request, 'home.html',)
+
+    quizzes = Quiz.objects.order_by('-created_at')
+    categories = Category.objects.all()
+    context = {"user_profile": 'sakil',
+               "quizzes": quizzes, "categories": categories}
+    return render(request, 'home.html', context)
 
 
 def about(request):

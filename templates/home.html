@@ -74,6 +74,19 @@
         text-align: justify;
         margin-bottom: 20px;
     }
+
+    .sbtn {
+        transition: color 0.5s ease-in-out, background-color 0.5s ease-in-out, font-size 0.5s ease-in-out, padding 0.5s ease-in-out;
+        font-weight: 600;
+        padding: 12px 0;
+    }
+
+    .sbtn:hover {
+        padding: 15px;
+        font-size: medium;
+        /* color: #fff; */
+        font-weight: 500;
+    }
 </style>
 
 <div class="mashead mx-3"
@@ -85,7 +98,7 @@
             <p class="fs-5">Welcome to BrainTease Challenge, the ultimate quiz application designed
                 to tickle your brain cells <br> test your
                 knowledge across a myriad of fascinating topics! Strap in for an exhilarating ride through .</p>
-            <p class="bt text-center btn-warning mx-auto px-3 py-2 rounded" style="width: 150px;"><a
+            <p class="bt text-center btn-warning sbtn mx-auto px-3  rounded" style="width: 150px;"><a
                     class="text-decoration-none text-white" href="{% url 'homepage' %}">Get Start</a></p>
         </div>
 
@@ -119,22 +132,98 @@
         </p>
         {% if request.user.is_authenticated%}
         <div class="d-flex mt-5">
-            <button class="btn btn-warning btn-lg active mx-3"><a class="text-decoration-none text-white"
+            <button class="btn btn-warning  mx-3 sbtn px-4"><a class="text-decoration-none text-white"
                     href="{% url 'all_quiz' %}">Start Quiz</a></button>
-            <button class="btn btn-warning btn-lg active "><a class="text-decoration-none text-white"
-                    href="{% url 'register' %}">Register</a></button>
         </div>
         {%else%}
         <div class="d-flex mt-5">
-            <button class="btn btn-warning btn-lg active mx-3"><a class="text-decoration-none text-white"
+            <button class="btn btn-warning  mx-3 sbtn px-4"><a class="text-decoration-none text-white"
                     href="{% url 'user_login' %}">Start Quiz</a></button>
-            <button class="btn btn-warning btn-lg active "><a class="text-decoration-none text-white"
+            <button class="btn btn-warning  mx-3 sbtn px-4 "><a class="text-decoration-none text-white"
                     href="{% url 'register' %}">Register</a></button>
         </div>
         {%endif%}
 
     </div>
 </div>
+
+
+
+<!-------------------------- quizess ------------------>
+<h2 class="px-5 mx-auto text-center font-italic">Quizess
+    </br>
+    <div class="hr-line mt-3"></div>
+</h2>
+<div
+    class="px-4 m swiffy-slider slider-item-show3 slider-nav-dark slider-nav-visible slider-nav-outside slider-item-snapstart my-3 slider-nav-sm my-xl-5 slider-indicators-square slider-indicators-outside slider-indicators-dark slider-nav-animation-slideup slider-nav-animation slider-item-first-visible">
+    <div class="slider-container">
+
+        {% for quiz in quizzes %}
+        <div class="slide-visible">
+            <div>
+                <h3 class="mb-0 h6" style="color: rgb(223, 30, 30); --darkreader-inline-color: #ff4646;"
+                    data-darkreader-inline-color="">Created:
+                    {{ quiz.created_at|date:"l H:i" }}</h3>
+                <h3 class="my-2 h4" style="" data-darkreader-inline-color="">
+                    {{ quiz.title }}</h3>
+                <strong>{{ quiz.title }}</strong> {{ quiz.description }}
+                <small class="text-muted text-uppercase">{{ quiz.category }}</small>
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+
+    <button type="button" class="slider-nav" aria-label="Go left"></button>
+    <button type="button" class="slider-nav slider-nav-next" aria-label="Go left"></button>
+
+    <div class="slider-indicators" style="justify-content:right;margin-left: 3rem;">
+        {% for quiz in quizzes %}
+        <button {% if forloop.first %}class="active" {% endif %} aria-label="Go to slide"></button>
+        {% endfor %}
+    </div>
+
+</div>
+
+
+
+
+
+<!-- ---------progress bar ----------->
+<div class="w-75 m-auto pb-5 ttext ">
+    <h2 class="px-5 mx-auto text-center fw-bold font-italic">Languages
+        </br>
+        <div class="hr-line mt-3"></div>
+    </h2>
+
+    <!-- <div class="d-flex align-item-center justify-contect-center"> -->
+
+    <div class="progress mt-4" role="progressbar" aria-label="Animated Success example" aria-valuenow="61"
+        aria-valuemin="0" aria-valuemax="100">
+        <div class="progress-bar progress-bar-animated progress-bar-striped bg-success fs-6" style="width: 61%">
+            English:
+            61%</div>
+    </div>
+    <!-- </div> -->
+    <div class="progress my-4" role="progressbar" aria-label="Info example" aria-valuenow="50" aria-valuemin="0"
+        aria-valuemax="100">
+        <div class="progress-bar progress-bar-animated progress-bar-striped fs-6 bg-info" style="width: 60%">
+            Python: 60%</div>
+    </div>
+    <div class="progress my-4" role="progressbar" aria-label="Warning example" aria-valuenow="75" aria-valuemin="0"
+        aria-valuemax="100">
+        <div class="progress-bar progress-bar-animated progress-bar-striped fs-6 bg-warning" style="width: 75%">
+            Javascript: 75%</div>
+    </div>
+    <div class="progress mb-6" role="progressbar" aria-label="Danger example" aria-valuenow="100" aria-valuemin="0"
+        aria-valuemax="100">
+        <div class="fs-6 progress-bar progress-bar-animated progress-bar-striped bg-danger" style="width: 50%">
+            Django:
+            50%</div>
+    </div>
+</div>
+
+
 
 
 <!--------------- blog start ----------------------->
@@ -161,7 +250,8 @@
                     <p class="card-text">Python stands out as a versatile and powerful tool that has captivated
                         developers
                         worldwide. Known for its simplicity,
-                        readability, and a vast ecosystem of libraries, Python has become a go-to language for a myriad
+                        readability, and a vast ecosystem of libraries, Python has become a go-to language for a
+                        myriad
                         of
                         applications.</p>
                     <div>
@@ -181,7 +271,8 @@
                     <p class="card-text">Welcome to the dynamic world of JavaScript, the unsung hero behind the
                         interactivity
                         and responsiveness of the modern
-                        web. From enhancing user interfaces to enabling powerful backend operations, JavaScript plays a
+                        web. From enhancing user interfaces to enabling powerful backend operations, JavaScript
+                        plays a
                         pivotal
                         role in shaping
                         the digital landscape.</p>
@@ -195,10 +286,12 @@
                 </div>
                 <div class="card-body p-3 p-xl-5">
                     <h3 class="card-title h5">Data Structure</h3>
-                    <p class="card-text">In the realm of computer science, data structures stand as the architectural
+                    <p class="card-text">In the realm of computer science, data structures stand as the
+                        architectural
                         foundation
                         upon which efficient algorithms
-                        and robust software applications are built. They are the unsung heroes, silently shaping the way
+                        and robust software applications are built. They are the unsung heroes, silently shaping the
+                        way
                         information is stored,
                         retrieved, and manipulated</p>
                 </div>
@@ -212,7 +305,8 @@
                 </div>
                 <div class="card-body  p-3 p-xl-5">
                     <h3 class="card-title h5">CPP</h3>
-                    <p class="card-text">C++ Progmaming Language help assess your understanding of C++ concepts, syntax,
+                    <p class="card-text">C++ Progmaming Language help assess your understanding of C++ concepts,
+                        syntax,
                         and
                         programming techniques. They provide a structured
                         way to evaluate your knowledge and identify areas for improvement.</p>
@@ -227,9 +321,11 @@
                 </div>
                 <div class="card-body  p-3 p-xl-5">
                     <h3 class="card-title h5">English</h3>
-                    <p class="card-text">In the realm of language acquisition, English quizzes play a pivotal role in
+                    <p class="card-text">In the realm of language acquisition, English quizzes play a pivotal role
+                        in
                         enhancing one's linguistic proficiency.
-                        These interactive assessments serve as invaluable tools for students and learners, offering a
+                        These interactive assessments serve as invaluable tools for students and learners, offering
+                        a
                         multifaceted approach to
                         language development.</p>
                 </div>
@@ -312,17 +408,20 @@
                         journey.</strong> <br><br>
 
                     1. Set Clear Goals:
-                    Define specific, achievable goals for each work session. Having a clear direction provides a sense
+                    Define specific, achievable goals for each work session. Having a clear direction provides a
+                    sense
                     of purpose and helps
                     prioritize tasks.
                     <br><br>
                     2. Time Management:
-                    Break your work into manageable chunks and allocate specific time slots for each task. Techniques
+                    Break your work into manageable chunks and allocate specific time slots for each task.
+                    Techniques
                     like the Pomodoro
                     Technique, where you work for a focused period and then take a short break, can be effective.
                     <br><br>
                     3. Eliminate Distractions:
-                    Identify and minimize potential distractions. Turn off unnecessary notifications, create a dedicated
+                    Identify and minimize potential distractions. Turn off unnecessary notifications, create a
+                    dedicated
                     workspace, and
                     communicate your focused work times to others.
                 </div>
@@ -346,12 +445,14 @@
                     direction and motivation.
                     <br><br>2.
                     Continuous Learning:
-                    Cultivate a mindset of lifelong learning. Stay curious, read books, take courses, attend workshops,
+                    Cultivate a mindset of lifelong learning. Stay curious, read books, take courses, attend
+                    workshops,
                     and seek out new
                     knowledge and skills.
                     <br><br>3.
                     Self-Reflection:
-                    Regularly reflect on your experiences, strengths, weaknesses, and areas for improvement. Understand
+                    Regularly reflect on your experiences, strengths, weaknesses, and areas for improvement.
+                    Understand
                     your values,
                     passions, and long-term aspirations.
                 </div>
