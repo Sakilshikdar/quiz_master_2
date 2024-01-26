@@ -1,6 +1,7 @@
 ### Quiz master
-#### Excel file structure.
+#### Quiz Excel file structure.
 ![image](https://github.com/Sakilshikdar/quiz_master_2/assets/96863546/038c6d71-6496-47d6-8256-76efe4673c58)
+![image](https://github.com/Sakilshikdar/quiz_master_2/assets/96863546/ffc45c69-4683-4e31-a3fd-f78e337f15c0)
 
 ### For Admin:
 Create Quiz:
