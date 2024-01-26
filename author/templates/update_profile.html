@@ -30,9 +30,9 @@
         {% if user.profile.image %}
         <img src={user.image.url} alt="">
         {% else %}
-        <img class="mx-auto" src="{% static 'images/user.jpeg/' %}" alt="">
+        <img class="mx-auto mb-3" src="{% static 'images/user.jpeg/' %}" alt="">
         {% endif %}
-        {}
+
         <div class="text-center">
             <h5 class="text-black">Username: {{user.username}}</h5>
             <h6 class="text-black">Name: {{user.first_name}} {{user.last_name}}</h6>
