@@ -24,7 +24,7 @@ def register(request):
         signup_form = forms.RegistrationForm(request.POST)
         if signup_form.is_valid():
             user = signup_form.save()
-            confirm_link = f"https://quiz-master-7or3.onrender.com/author/login/"
+            confirm_link = f"https://quiz-master-2.onrender.com/author/login/"
             email_subject = "Confirm Your Email"
             email_body = render_to_string(
                 'confirm_email.html', {'confirm_link': confirm_link})
